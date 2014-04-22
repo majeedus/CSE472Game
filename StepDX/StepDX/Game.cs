@@ -90,11 +90,13 @@ namespace StepDX
             floor.Color = Color.CornflowerBlue;
             world.Add(floor);
 
+            /*
             AddObstacle(2, 3, 1.7f, 1.9f, Color.Crimson);
             AddObstacle(4, 4.2f, 1, 2.1f, Color.Coral);
             AddObstacle(5, 6, 2.2f, 2.4f, Color.BurlyWood);
             AddObstacle(5.5f, 6.5f, 3.2f, 3.4f, Color.PeachPuff);
             AddObstacle(6.5f, 7.5f, 2.5f, 2.7f, Color.Chocolate);
+            */
 
             Platform platform = new Platform();
             platform.AddVertex(new Vector2(3.2f, 2));
@@ -104,6 +106,15 @@ namespace StepDX
             platform.Color = Color.CornflowerBlue;
             world.Add(platform);
 
+            //addTexturedPolygon(left, right, bottom, top, outer, path)
+            addTexturedPolygon(1.2f, 1.9f, 3.3f, 3.5f, 3.0f, "../../stone08.bmp");
+            addTexturedPolygon(2, 3, 1.7f, 1.9f, 1.5f, "../../texture1.bmp");
+            //addTexturedPolygon(4, 4.2f, 1, 2.1f, 0.7f, "../../texture2.bmp");
+            addTexturedPolygon(5, 6, 2.2f, 2.4f, 1.5f, "../../texture3.bmp");
+            addTexturedPolygon(5.5f, 6.5f, 3.2f, 3.4f, 2.8f, "../../texture4.bmp");
+            addTexturedPolygon(6.5f, 7.5f, 2.5f, 2.7f, 2.0f, "../../texture5.bmp");
+
+            /*
             Texture texture = TextureLoader.FromFile(device, "../../stone08.bmp");
             PolygonTextured pt = new PolygonTextured();
             pt.Tex = texture;
@@ -117,6 +128,7 @@ namespace StepDX
             pt.AddTex(new Vector2(1, 1));
             pt.Color = Color.Transparent;
             world.Add(pt);
+            */
 
             Texture spritetexture = TextureLoader.FromFile(device, "../../guy8.bmp");
             player.Tex = spritetexture;
@@ -133,6 +145,25 @@ namespace StepDX
             player.P = new Vector2(0.5f, 1);
 
 
+        }
+
+        public void addTexturedPolygon(float left, float right, float bottom, float top, float outer, String texturePath)
+        {
+            Texture texture = TextureLoader.FromFile(device, texturePath);
+            PolygonTextured pt = new PolygonTextured();
+            pt.Tex = texture;
+            pt.AddVertex(new Vector2(left, top)); //A
+            pt.AddTex(new Vector2(0, 1));
+            pt.AddVertex(new Vector2(right, top)); //B
+            pt.AddTex(new Vector2(0.5f, 0));
+            pt.AddVertex(new Vector2(right, bottom)); //C
+            pt.AddTex(new Vector2(1, 0.5f));
+            pt.AddVertex(new Vector2((left+right)/2.0f, outer)); //D
+            pt.AddTex(new Vector2(1, 1));
+            pt.AddVertex(new Vector2(left, bottom));
+            pt.AddTex(new Vector2(0, 0.5f));
+            pt.Color = Color.Transparent;
+            world.Add(pt);
         }
 
         /// <summary>
