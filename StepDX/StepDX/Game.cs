@@ -69,6 +69,7 @@ namespace StepDX
         private Texture texture5;
         private Texture texture6;
         private Texture stoneTexture;
+        private Texture finishLineTexture;
 
         /// <summary>
         /// Jump sounds class
@@ -104,6 +105,7 @@ namespace StepDX
             texture5 = TextureLoader.FromFile(device, "../../texture5.bmp");
             texture6 = TextureLoader.FromFile(device, "../../texture6.bmp");
             stoneTexture = TextureLoader.FromFile(device, "../../stone08.bmp");
+            finishLineTexture = TextureLoader.FromFile(device, "../../finishlineplatform.bmp");
             
             Polygon startingPlat = new Polygon();
             startingPlat.AddVertex(new Vector2(0, .1f));
