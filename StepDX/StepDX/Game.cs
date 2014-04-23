@@ -146,7 +146,7 @@ namespace StepDX
             platform.AddVertex(new Vector2(3.9f, 2));
             platform.AddVertex(new Vector2(3.9f, 1.8f));
             platform.AddVertex(new Vector2(3.2f, 1.8f));
-            platform.Color = Color.CornflowerBlue;
+            platform.Color = Color.GreenYellow;
             world.Add(platform);
 
             HorizontalPlat platform2 = new HorizontalPlat();
@@ -159,6 +159,17 @@ namespace StepDX
             platform2.Width = 4;
             world.Add(platform2);
 
+            /*
+            HorizontalPlat platform3 = new HorizontalPlat();
+            platform2.AddVertex(new Vector2(23, 2));
+            platform2.AddVertex(new Vector2(23.7f, 2));
+            platform2.AddVertex(new Vector2(23.7f, 1.8f));
+            platform2.AddVertex(new Vector2(23.2f, 1.8f));
+            platform2.Speed = 5;
+            platform2.Color = Color.Green;
+            platform2.Width = 4;
+            world.Add(platform3);
+            */
             //addTexturedPolygon(left, right, bottom, top, outer, path)
             addTexturedPolygon(1.2f, 1.9f, 1.4f, 1.6f, 1.3f, stoneTexture); //1st plat
             addTexturedPolygon(6, 7, 1.7f, 1.9f, 1.5f, texture1);   //3rd after moving
@@ -225,6 +236,11 @@ namespace StepDX
             // How much time change has there been?
             long time = stopwatch.ElapsedMilliseconds;
 
+            score = 1000 - (int)time / 10;
+            if (score == 0)
+            {
+                //GameOver();
+            }
             float delta = (time - lastTime) * 0.001f;       // Delta time in milliseconds
             lastTime = time;
 
@@ -434,6 +450,13 @@ namespace StepDX
             player.V = new Vector2(0, 0);
             player.A = new Vector2(0, -9.8f);
             player.isStanding = true;
+            stopwatch.Start();
+        }
+
+        private void GameOver()
+        {
+            Reset();
+            stopwatch.Reset();
         }
 
 
