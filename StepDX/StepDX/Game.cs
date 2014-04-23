@@ -71,7 +71,7 @@ namespace StepDX
         private Texture texture6;
         private Texture stoneTexture;
         private Texture finishLineTexture;
-
+        private ProjectileGenerator projectileGen = new ProjectileGenerator();
         private Microsoft.DirectX.Direct3D.Font font;
 
         private int scoreLostPerSecond = 10;
@@ -244,6 +244,7 @@ namespace StepDX
             }
             currentPlat = null;
             float delta = (time - lastTime) * 0.001f;       // Delta time in milliseconds
+            
             lastTime = time;
 
             while (delta > 0)
@@ -268,16 +269,21 @@ namespace StepDX
                 player.isStanding = false;
                 foreach (Polygon p in world)
                 {
+
                     if (collision.Test(player, p))
                     {
                         float depth = collision.P1inP2 ?
                                   collision.Depth : -collision.Depth;
                         player.P = player.P + collision.N * depth;
                         Vector2 v = player.V;
-                        
+                        if (p.GetType() == typeof(Projectile))
+                        {
+                            Reset();
+                        }
                         if (collision.N.X != 0)
                         {
                             v.X = 0;
+
 
                         }
                         if (collision.N.Y != 0)
@@ -314,7 +320,7 @@ namespace StepDX
                     }
 
                 }
-
+                world = projectileGen.Advance(delta, world);
                 delta -= step;
             }
             //Check to see if we need a reset
