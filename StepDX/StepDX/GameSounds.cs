@@ -6,28 +6,22 @@ using System.Windows.Forms;
 using Microsoft.DirectX;
 using Microsoft.DirectX.DirectSound;
 
-namespace Collide
+namespace StepDX
 {
     class GameSounds
     {
         private Device SoundDevice = null;
 
-        private SecondaryBuffer[] clank = new SecondaryBuffer[10];
-        int clankToUse = 0;
-
-        private SecondaryBuffer nah = null;
-        private SecondaryBuffer arms = null;
+        private SecondaryBuffer jump = null;
+        private SecondaryBuffer die = null;
 
         public GameSounds(Form form)
         {
             SoundDevice = new Device();
             SoundDevice.SetCooperativeLevel(form, CooperativeLevel.Priority);
 
-            Load(ref nah, "../../Nah1.wav");
-            Load(ref arms, "../../arms.wav");
-
-            for (int i = 0; i < clank.Length; i++)
-                Load(ref clank[i], "../../clank.wav");
+            Load(ref jump, "../../jump.wav");
+            Load(ref die, "../../die.wav");
         }
 
         private void Load(ref SecondaryBuffer buffer, string filename)
@@ -44,46 +38,22 @@ namespace Collide
             }
         }
 
-        public void Clank()
+        public void Jump()
         {
-            clankToUse = (clankToUse + 1) % clank.Length;
-
-            if (clank[clankToUse] == null)
+            if (jump == null)
                 return;
 
-            if (!clank[clankToUse].Status.Playing)
-                clank[clankToUse].Play(0, BufferPlayFlags.Default);
+            if (!jump.Status.Playing)
+                jump.Play(0, BufferPlayFlags.Default);
         }
 
-        public void Nah()
+        public void Die()
         {
-            if (nah == null)
+            if (die == null)
                 return;
 
-            if (!nah.Status.Playing)
-                nah.Play(0, BufferPlayFlags.Default);
+            if (!die.Status.Playing)
+                die.Play(0, BufferPlayFlags.Default);
         }
-
-        public void Arms()
-        {
-            if (arms == null)
-                return;
-
-            if (!arms.Status.Playing)
-            {
-                arms.SetCurrentPosition(0);
-                arms.Play(0, BufferPlayFlags.Default);
-            }
-        }
-
-        public void ArmsEnd()
-        {
-            if (arms == null)
-                return;
-
-            if (arms.Status.Playing)
-                arms.Stop();
-        }
-
     }
 }

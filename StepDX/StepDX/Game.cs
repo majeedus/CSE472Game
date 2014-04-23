@@ -61,13 +61,20 @@ namespace StepDX
         /// The collision testing subsystem
         /// </summary>
         Collision collision = new Collision();
-        //Testing
+
+        /// <summary>
+        /// Jump sounds class
+        /// </summary>
+        private GameSounds sounds;
+
         public Game()
         {
             InitializeComponent();
 
             if (!InitializeDirect3D())
                 return;
+
+            sounds = new GameSounds(this);
 
             vertices = new VertexBuffer(typeof(CustomVertex.PositionColored), // Type of vertex
                                         4,      // How many
@@ -330,6 +337,7 @@ namespace StepDX
             {
                 if (player.isStanding)
                 {
+                    sounds.Jump();
                     player.isStanding = false;
                     Vector2 v = player.V;
                     v.Y = 7;
