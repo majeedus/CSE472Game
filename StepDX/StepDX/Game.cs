@@ -150,7 +150,7 @@ namespace StepDX
             player.Color = Color.Transparent;
             player.Transparent = true;
             player.P = new Vector2(0.5f, 1);
-
+            player.A = new Vector2(0, -9.8f);
 
         }
 
@@ -211,7 +211,7 @@ namespace StepDX
                                   collision.Depth : -collision.Depth;
                         player.P = player.P + collision.N * depth;
                         Vector2 v = player.V;
-
+                        
                         if (collision.N.X != 0)
                         {
                             v.X = 0;
@@ -234,7 +234,7 @@ namespace StepDX
                         //Player is not colliding with anything.
                         if (player.V.Y != 0)
                         {
-                            player.isStanding = false;
+                             player.isStanding = false;
                         }
                     }
                 }
@@ -371,9 +371,10 @@ namespace StepDX
         {
             player.P = new Vector2(0.5f, 1);
             player.V = new Vector2(0, 0);
-            player.A = new Vector2(0, 0);
+            player.A = new Vector2(0, -9.8f);
             player.isStanding = true;
         }
+
 
     }
 }
