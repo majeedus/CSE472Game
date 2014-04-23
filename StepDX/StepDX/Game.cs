@@ -62,6 +62,14 @@ namespace StepDX
         /// </summary>
         Collision collision = new Collision();
 
+        private Texture texture1;
+        private Texture texture2;
+        private Texture texture3;
+        private Texture texture4;
+        private Texture texture5;
+        private Texture texture6;
+        private Texture stoneTexture;
+
         /// <summary>
         /// Jump sounds class
         /// </summary>
@@ -88,6 +96,14 @@ namespace StepDX
             // Determine the last time
             stopwatch.Start();
             lastTime = stopwatch.ElapsedMilliseconds;
+
+            texture1 = TextureLoader.FromFile(device, "../../texture1.bmp");
+            texture2 = TextureLoader.FromFile(device, "../../texture2.bmp");
+            texture3 = TextureLoader.FromFile(device, "../../texture3.bmp");
+            texture4 = TextureLoader.FromFile(device, "../../texture4.bmp");
+            texture5 = TextureLoader.FromFile(device, "../../texture5.bmp");
+            texture6 = TextureLoader.FromFile(device, "../../texture6.bmp");
+            stoneTexture = TextureLoader.FromFile(device, "../../stone08.bmp");
             
             Polygon startingPlat = new Polygon();
             startingPlat.AddVertex(new Vector2(0, 1));
@@ -97,7 +113,7 @@ namespace StepDX
             startingPlat.Color = Color.CornflowerBlue;
             world.Add(startingPlat);
             
-            /*
+            /* Remove this code later
             AddObstacle(2, 3, 1.7f, 1.9f, Color.Crimson);
             AddObstacle(4, 4.2f, 1, 2.1f, Color.Coral);
             AddObstacle(5, 6, 2.2f, 2.4f, Color.BurlyWood);
@@ -114,14 +130,13 @@ namespace StepDX
             world.Add(platform);
 
             //addTexturedPolygon(left, right, bottom, top, outer, path)
-            addTexturedPolygon(1.2f, 1.9f, 2.4f, 2.6f, 2.5f, "../../stone08.bmp");
-            addTexturedPolygon(2, 3, 1.7f, 1.9f, 1.5f, "../../texture1.bmp");
-            //addTexturedPolygon(4, 4.2f, 1, 2.1f, 0.7f, "../../texture2.bmp");
-            addTexturedPolygon(5, 6, 2.2f, 2.4f, 1.5f, "../../texture3.bmp");
-            addTexturedPolygon(5.5f, 6.5f, 3.2f, 3.4f, 2.8f, "../../texture4.bmp");
-            addTexturedPolygon(6.5f, 7.5f, 2.5f, 2.7f, 2.0f, "../../texture5.bmp");
+            addTexturedPolygon(1.2f, 1.9f, 2.4f, 2.6f, 2.5f, stoneTexture);
+            addTexturedPolygon(2, 3, 1.7f, 1.9f, 1.5f, texture1);
+            addTexturedPolygon(5, 6, 2.2f, 2.4f, 1.5f, texture2);
+            addTexturedPolygon(5.5f, 6.5f, 3.2f, 3.4f, 2.8f, texture4);
+            addTexturedPolygon(6.5f, 7.5f, 2.5f, 2.7f, 2.0f, texture5);
 
-            /*
+            /* Remove this code later...
             Texture texture = TextureLoader.FromFile(device, "../../stone08.bmp");
             PolygonTextured pt = new PolygonTextured();
             pt.Tex = texture;
@@ -154,9 +169,8 @@ namespace StepDX
 
         }
 
-        public void addTexturedPolygon(float left, float right, float bottom, float top, float outer, String texturePath)
+        public void addTexturedPolygon(float left, float right, float bottom, float top, float outer, Texture texture)
         {
-            Texture texture = TextureLoader.FromFile(device, texturePath);
             PolygonTextured pt = new PolygonTextured();
             pt.Tex = texture;
             pt.AddVertex(new Vector2(left, top)); //A
