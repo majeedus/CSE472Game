@@ -276,7 +276,7 @@ namespace StepDX
                         Vector2 v = player.V;
                         if (p.GetType() == typeof(Projectile))
                         {
-                            Reset();
+                            PlayerDied();
                         }
                         if (collision.N.X != 0)
                         {
@@ -328,7 +328,7 @@ namespace StepDX
             //Check to see if we need a reset
             if (player.P.Y < -.5f)
             {
-                Reset();
+                PlayerDied();
             }
         }
 
@@ -464,7 +464,7 @@ namespace StepDX
             p.Color = color;
             world.Add(p);
         }
-        private void Reset()
+        private void ResetGame()
         {
             player.P = new Vector2(0.5f, 1);
             player.V = new Vector2(0, 0);
@@ -474,18 +474,26 @@ namespace StepDX
             stopwatch.Start();
         }
 
+        private void PlayerDied()
+        {
+            sounds.Die();
+            ResetGame();
+        }
+
         private void GameOver()
         {
+            sounds.GameOver();
             System.Windows.Forms.MessageBox.Show("You lose!");
             stopwatch.Reset();
-            Reset();
+            ResetGame();
         }
 
         private void GameWon()
         {
+            sounds.GameWon();
             System.Windows.Forms.MessageBox.Show("You Win!\n Score: " + score);
             stopwatch.Reset();
-            Reset();
+            ResetGame();
         }
 
 

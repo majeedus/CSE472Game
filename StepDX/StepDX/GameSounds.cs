@@ -14,6 +14,8 @@ namespace StepDX
 
         private SecondaryBuffer jump = null;
         private SecondaryBuffer die = null;
+        private SecondaryBuffer gameend = null;
+        private SecondaryBuffer gamewon = null;
 
         public GameSounds(Form form)
         {
@@ -21,7 +23,9 @@ namespace StepDX
             SoundDevice.SetCooperativeLevel(form, CooperativeLevel.Priority);
 
             Load(ref jump, "../../jump.wav");
-            Load(ref die, "../../die.wav");
+            Load(ref die, "../../mariodie.wav");
+            Load(ref gameend, "../../die.wav");
+            Load(ref gamewon, "../../stage_clear.wav");
         }
 
         private void Load(ref SecondaryBuffer buffer, string filename)
@@ -54,6 +58,24 @@ namespace StepDX
 
             if (!die.Status.Playing)
                 die.Play(0, BufferPlayFlags.Default);
+        }
+
+        public void GameOver()
+        {
+            if (gameend == null)
+                return;
+
+            if (!gameend.Status.Playing)
+                gameend.Play(0, BufferPlayFlags.Default);
+        }
+
+        public void GameWon()
+        {
+            if (gamewon == null)
+                return;
+
+            if (!gamewon.Status.Playing)
+                gamewon.Play(0, BufferPlayFlags.Default);
         }
     }
 }
