@@ -35,6 +35,11 @@ namespace StepDX
         /// </summary>
         private float speed = 1;
 
+        /// <summary>
+        /// Added delay
+        /// </summary>
+        private float dtOffset = 0;
+
         private float actualSpeed;
 
         public float GetSpeed { get { return actualSpeed; } }
@@ -60,13 +65,18 @@ namespace StepDX
             time = saveTime;
         }
 
+        public void setDtOffset(float offset)
+        {
+            dtOffset = offset;
+        }
+
         /// <summary>
         /// Advance the platform animation in time
         /// </summary>
         /// <param name="dt">The delta time in seconds</param>
         public override void Advance(float dt)
         {
-            time += dt;
+            time += (dt + dtOffset);
 
             // I'm going to base my height entirely on the current time.
             // From 0 to speed, we are rising, speed to 2*speed we are 
