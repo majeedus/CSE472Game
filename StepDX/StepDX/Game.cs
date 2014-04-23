@@ -132,15 +132,6 @@ namespace StepDX
             startingPlat.AddVertex(new Vector2(0, 0));
             startingPlat.Color = Color.CornflowerBlue;
             world.Add(startingPlat);
-            
-            
-            /* Remove this code later
-            AddObstacle(2, 3, 1.7f, 1.9f, Color.Crimson);
-            AddObstacle(4, 4.2f, 1, 2.1f, Color.Coral);
-            AddObstacle(5, 6, 2.2f, 2.4f, Color.BurlyWood);
-            AddObstacle(5.5f, 6.5f, 3.2f, 3.4f, Color.PeachPuff);
-            AddObstacle(6.5f, 7.5f, 2.5f, 2.7f, Color.Chocolate);
-            */
 
             Platform platform = new Platform();
             platform.AddVertex(new Vector2(3.2f, 2));
@@ -149,6 +140,23 @@ namespace StepDX
             platform.AddVertex(new Vector2(3.2f, 1.8f));
             platform.Color = Color.GreenYellow;
             world.Add(platform);
+
+            Platform platform4 = new Platform();
+            platform4.AddVertex(new Vector2(21, 2));
+            platform4.AddVertex(new Vector2(21.5f, 2));
+            platform4.AddVertex(new Vector2(21.5f, 1.8f));
+            platform4.AddVertex(new Vector2(21, 1.8f));
+            platform4.Color = Color.IndianRed;
+            world.Add(platform4);
+
+            Platform platform5 = new Platform();
+            platform5.AddVertex(new Vector2(23, 2));
+            platform5.AddVertex(new Vector2(23.5f, 2));
+            platform5.AddVertex(new Vector2(23.5f, 1.8f));
+            platform5.AddVertex(new Vector2(23, 1.8f));
+            platform5.Color = Color.MediumSeaGreen;
+            platform5.setDtOffset(0.01f);
+            world.Add(platform5);
 
             HorizontalPlat platform2 = new HorizontalPlat();
             platform2.AddVertex(new Vector2(11, 2));
@@ -160,39 +168,28 @@ namespace StepDX
             platform2.Width = 4;
             world.Add(platform2);
 
-            /*
-            HorizontalPlat platform3 = new HorizontalPlat();
-            platform2.AddVertex(new Vector2(23, 2));
-            platform2.AddVertex(new Vector2(23.7f, 2));
-            platform2.AddVertex(new Vector2(23.7f, 1.8f));
-            platform2.AddVertex(new Vector2(23.2f, 1.8f));
-            platform2.Speed = 5;
-            platform2.Color = Color.Green;
-            platform2.Width = 4;
-            world.Add(platform3);
-            */
-            //addTexturedPolygon(left, right, bottom, top, outer, path)
+            //addTexturedPolygon(left, right, bottom, top, outer, texture)
             addTexturedPolygon(1.2f, 1.9f, 1.4f, 1.6f, 1.3f, stoneTexture); //1st plat
             addTexturedPolygon(6, 7, 1.7f, 1.9f, 1.5f, texture1);   //3rd after moving
 
             addTexturedPolygon(9, 10, 1.2f, 1.4f, 1.0f, texture4);
             addTexturedPolygon(15, 16, 2.5f, 2.7f, 2.0f, texture5);
             addTexturedPolygon(18, 20, 2.2f, 2.4f, 1.5f, texture2);
-            /* Remove this code later...
-            Texture texture = TextureLoader.FromFile(device, "../../stone08.bmp");
+            addTexturedPolygon(24.5f, 25, 2.2f, 2.4f, 1.5f, texture3);
+            addTexturedPolygon(27, 29, 2.2f, 2.4f, 1.5f, texture6);
+
             PolygonTextured pt = new PolygonTextured();
-            pt.Tex = texture;
-            pt.AddVertex(new Vector2(1.2f, 3.5f));
-            pt.AddTex(new Vector2(0, 1));
-            pt.AddVertex(new Vector2(1.9f, 3.5f));
+            pt.Tex = finishLineTexture;
+            pt.AddVertex(new Vector2(30, 1.5f)); //A
             pt.AddTex(new Vector2(0, 0));
-            pt.AddVertex(new Vector2(1.9f, 3.3f));
+            pt.AddVertex(new Vector2(32, 1.5f)); //B
             pt.AddTex(new Vector2(1, 0));
-            pt.AddVertex(new Vector2(1.2f, 3.3f));
+            pt.AddVertex(new Vector2(32, 0.5f)); //C
             pt.AddTex(new Vector2(1, 1));
+            pt.AddVertex(new Vector2(30, 0.5f));
+            pt.AddTex(new Vector2(0, 1));
             pt.Color = Color.Transparent;
             world.Add(pt);
-            */
 
             Texture spritetexture = TextureLoader.FromFile(device, "../../guy8.bmp");
             player.Tex = spritetexture;
@@ -237,10 +234,10 @@ namespace StepDX
             // How much time change has there been?
             long time = stopwatch.ElapsedMilliseconds;
 
-            score = 1000 - (int)time / 10;
-            if (score == 0)
+            score = 1000 - (int)time / 100;
+            if (score < 0)
             {
-                //GameOver();
+                GameOver();
             }
             currentPlat = null;
             float delta = (time - lastTime) * 0.001f;       // Delta time in milliseconds
@@ -468,8 +465,9 @@ namespace StepDX
 
         private void GameOver()
         {
-            Reset();
+            System.Windows.Forms.MessageBox.Show("You lose!");
             stopwatch.Reset();
+            Reset();
         }
 
 
