@@ -78,6 +78,8 @@
     <Compile Include="Polygon.cs" />
     <Compile Include="PolygonTextured.cs" />
     <Compile Include="Program.cs" />
+    <Compile Include="Projectile.cs" />
+    <Compile Include="ProjectileGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Game.resx">
       <DependentUpon>Game.cs</DependentUpon>
