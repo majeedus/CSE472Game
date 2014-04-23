@@ -99,6 +99,18 @@ namespace StepDX
 
             background = new Background(device, playingW, playingH);
 
+            font = new Microsoft.DirectX.Direct3D.Font(device,  // Device we are drawing on
+                    40,         // Font height in pixels
+                    0,          // Font width in pixels or zero to match height
+                    FontWeight.Bold,    // Font weight (Normal, Bold, etc.)
+                    0,          // mip levels (0 for default)
+                    false,      // italics?
+                    CharacterSet.Default,   // Character set to use
+                    Precision.Default,      // The font precision, try some of them...
+                    FontQuality.Default,    // Quality?
+                    PitchAndFamily.FamilyDoNotCare,     // Pitch and family, we don't care
+                    "Arial");               // And the name of the font
+
             // Determine the last time
             stopwatch.Start();
             lastTime = stopwatch.ElapsedMilliseconds;
@@ -324,19 +336,6 @@ namespace StepDX
 
             // Render the background
             background.Render();
-
-
-            font = new Microsoft.DirectX.Direct3D.Font(device,  // Device we are drawing on
-                    40,         // Font height in pixels
-                    0,          // Font width in pixels or zero to match height
-                    FontWeight.Bold,    // Font weight (Normal, Bold, etc.)
-                    0,          // mip levels (0 for default)
-                    false,      // italics?
-                    CharacterSet.Default,   // Character set to use
-                    Precision.Default,      // The font precision, try some of them...
-                    FontQuality.Default,    // Quality?
-                    PitchAndFamily.FamilyDoNotCare,     // Pitch and family, we don't care
-                    "Arial");               // And the name of the font
 
             font.DrawText(null,     // Because I say so
             "Score: " + score,            // Text to draw
