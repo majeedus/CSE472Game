@@ -24,6 +24,7 @@ namespace StepDX
 
         private float spriteTime = 0;
         private float spriteRate = 6;   // 6 per second
+        public bool isMoving = false;
 
         
         public Boolean isStanding = true;
@@ -66,7 +67,7 @@ namespace StepDX
 
             int spriteNum;
 
-            if (v.X == 0)
+            if (v.X == 0 || !isMoving)
             {
                 spriteNum = 5;
                 spriteTime = 0;

@@ -52,6 +52,7 @@ namespace StepDX
         /// </summary>
         private System.Diagnostics.Stopwatch stopwatch = new System.Diagnostics.Stopwatch();
 
+        private HorizontalPlat currentPlat = new HorizontalPlat();
         /// <summary>
         /// Our player sprite
         /// </summary>
@@ -70,6 +71,11 @@ namespace StepDX
         private Texture texture6;
         private Texture stoneTexture;
         private Texture finishLineTexture;
+
+        private Microsoft.DirectX.Direct3D.Font font;
+
+        private int scoreLostPerSecond = 10;
+        private int score = 1000;
 
         /// <summary>
         /// Jump sounds class
@@ -93,6 +99,18 @@ namespace StepDX
                                         Pool.Managed);
 
             background = new Background(device, playingW, playingH);
+
+            font = new Microsoft.DirectX.Direct3D.Font(device,  // Device we are drawing on
+                    40,         // Font height in pixels
+                    0,          // Font width in pixels or zero to match height
+                    FontWeight.Bold,    // Font weight (Normal, Bold, etc.)
+                    0,          // mip levels (0 for default)
+                    false,      // italics?
+                    CharacterSet.Default,   // Character set to use
+                    Precision.Default,      // The font precision, try some of them...
+                    FontQuality.Default,    // Quality?
+                    PitchAndFamily.FamilyDoNotCare,     // Pitch and family, we don't care
+                    "Arial");               // And the name of the font
 
             // Determine the last time
             stopwatch.Start();
@@ -137,7 +155,7 @@ namespace StepDX
             platform2.AddVertex(new Vector2(11.7f, 2));
             platform2.AddVertex(new Vector2(11.7f, 1.8f));
             platform2.AddVertex(new Vector2(11.2f, 1.8f));
-            platform2.Speed = 5;
+            platform2.Speed = 2.5f;
             platform2.Color = Color.Red;
             platform2.Width = 4;
             world.Add(platform2);
@@ -179,7 +197,7 @@ namespace StepDX
             player.Transparent = true;
             player.P = new Vector2(0.5f, 1);
             player.A = new Vector2(0, -9.8f);
-
+            currentPlat = null;
         }
 
         public void addTexturedPolygon(float left, float right, float bottom, float top, float outer, Texture texture)
@@ -207,6 +225,8 @@ namespace StepDX
         {
             // How much time change has there been?
             long time = stopwatch.ElapsedMilliseconds;
+
+            currentPlat = null;
             float delta = (time - lastTime) * 0.001f;       // Delta time in milliseconds
             lastTime = time;
 
@@ -264,14 +284,17 @@ namespace StepDX
                             {
                                 HorizontalPlat x = (HorizontalPlat)p;
                                 Vector2 v2 = player.V;
+                                currentPlat = x;
                                 v.X = x.GetSpeed;
-                                player.V = v + player.V;
                                 player.isStanding = true;
+
                             }
                         }
 
-                        player.V = v;
-                        player.Advance(0);
+
+                            player.V = v;
+                            player.Advance(0);
+                        
                     }
 
                 }
@@ -319,6 +342,12 @@ namespace StepDX
             // Render the background
             background.Render();
 
+            font.DrawText(null,     // Because I say so
+            "Score: " + score,            // Text to draw
+            new Point(1, 3),  // Location on the display (pixels with 0,0 as upper left)
+            Color.LightCyan);   // Font color
+
+
             foreach (Polygon p in world)
             {
                 p.Render(device);
@@ -362,13 +391,19 @@ namespace StepDX
             {
                 Vector2 v = player.V;
                 v.X = 1.5f;
+                if (currentPlat != null)
+                    v.X = 1.5f + currentPlat.GetSpeed; 
                 player.V = v;
+                player.isMoving = true;
             }
             else if (e.KeyCode == Keys.Left)
             {
                 Vector2 v = player.V;
                 v.X = -1.5f;
+                if (currentPlat != null)
+                    v.X = -1.5f + currentPlat.GetSpeed; 
                 player.V = v;
+                player.isMoving = true;
             }
             else if (e.KeyCode == Keys.Space)
             {
@@ -391,6 +426,7 @@ namespace StepDX
                 Vector2 v = player.V;
                 v.X = 0;
                 player.V = v;
+                player.isMoving = false;
             }
         }
 
@@ -410,6 +446,7 @@ namespace StepDX
             player.V = new Vector2(0, 0);
             player.A = new Vector2(0, -9.8f);
             player.isStanding = true;
+            player.isMoving = false;
         }
 
 
