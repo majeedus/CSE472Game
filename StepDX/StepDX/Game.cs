@@ -81,15 +81,15 @@ namespace StepDX
             // Determine the last time
             stopwatch.Start();
             lastTime = stopwatch.ElapsedMilliseconds;
-
-            Polygon floor = new Polygon();
-            floor.AddVertex(new Vector2(0, 1));
-            floor.AddVertex(new Vector2(playingW, 1));
-            floor.AddVertex(new Vector2(playingW, 0.9f));
-            floor.AddVertex(new Vector2(0, 0.9f));
-            floor.Color = Color.CornflowerBlue;
-            world.Add(floor);
-
+            
+            Polygon startingPlat = new Polygon();
+            startingPlat.AddVertex(new Vector2(0, 1));
+            startingPlat.AddVertex(new Vector2(.5f, 1));
+            startingPlat.AddVertex(new Vector2(.5f, 0.9f));
+            startingPlat.AddVertex(new Vector2(0, 0.9f));
+            startingPlat.Color = Color.CornflowerBlue;
+            world.Add(startingPlat);
+            
             /*
             AddObstacle(2, 3, 1.7f, 1.9f, Color.Crimson);
             AddObstacle(4, 4.2f, 1, 2.1f, Color.Coral);
@@ -107,7 +107,7 @@ namespace StepDX
             world.Add(platform);
 
             //addTexturedPolygon(left, right, bottom, top, outer, path)
-            addTexturedPolygon(1.2f, 1.9f, 3.3f, 3.5f, 3.0f, "../../stone08.bmp");
+            addTexturedPolygon(1.2f, 1.9f, 2.4f, 2.6f, 2.5f, "../../stone08.bmp");
             addTexturedPolygon(2, 3, 1.7f, 1.9f, 1.5f, "../../texture1.bmp");
             //addTexturedPolygon(4, 4.2f, 1, 2.1f, 0.7f, "../../texture2.bmp");
             addTexturedPolygon(5, 6, 2.2f, 2.4f, 1.5f, "../../texture3.bmp");
@@ -234,7 +234,11 @@ namespace StepDX
 
                 delta -= step;
             }
-
+            //Check to see if we need a reset
+            if (player.P.Y < -.5f)
+            {
+                Reset();
+            }
         }
 
 
@@ -354,6 +358,13 @@ namespace StepDX
             p.AddVertex(new Vector2(right, bottom));
             p.Color = color;
             world.Add(p);
+        }
+        private void Reset()
+        {
+            player.P = new Vector2(0.5f, 1);
+            player.V = new Vector2(0, 0);
+            player.A = new Vector2(0, 0);
+            player.isStanding = true;
         }
 
     }
