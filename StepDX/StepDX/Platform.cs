@@ -35,8 +35,9 @@ namespace StepDX
         /// </summary>
         private float speed = 1;
 
+        private float actualSpeed;
 
-        public float Speed { get { return speed; } set { speed = value; } }
+        public float GetSpeed { get { return actualSpeed; } }
 
         /// <summary>
         /// How high we go
@@ -77,10 +78,12 @@ namespace StepDX
             {
                 // Even, rising
                 h = maxHeight * (time - step * speed) / speed;
+                actualSpeed = speed;
             }
             else
             {
                 h = 1 - maxHeight * (time - step * speed) / speed;
+                actualSpeed = speed * -1;
             }
 
             // Move it

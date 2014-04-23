@@ -133,12 +133,13 @@ namespace StepDX
             world.Add(platform);
 
             HorizontalPlat platform2 = new HorizontalPlat();
-            platform2.AddVertex(new Vector2(11.2f, 2));
+            platform2.AddVertex(new Vector2(11, 2));
             platform2.AddVertex(new Vector2(11.7f, 2));
             platform2.AddVertex(new Vector2(11.7f, 1.8f));
             platform2.AddVertex(new Vector2(11.2f, 1.8f));
-            platform2.Speed = 1;
-            platform.Color = Color.Red;
+            platform2.Speed = 5;
+            platform2.Color = Color.Red;
+            platform2.Width = 4;
             world.Add(platform2);
 
             //addTexturedPolygon(left, right, bottom, top, outer, path)
@@ -228,7 +229,7 @@ namespace StepDX
 
                 foreach (Polygon p in world)
                     p.Advance(step);
-
+                player.isStanding = false;
                 foreach (Polygon p in world)
                 {
                     if (collision.Test(player, p))
@@ -241,6 +242,7 @@ namespace StepDX
                         if (collision.N.X != 0)
                         {
                             v.X = 0;
+
                         }
                         if (collision.N.Y != 0)
                         {
@@ -250,19 +252,28 @@ namespace StepDX
                                 //Check that player didn't just hit its head on ceiling
                                 player.isStanding = true;
                             }
+                            if (p.GetType() == typeof(Platform))
+                            {
+                                Platform x = (Platform)p;
+                                Vector2 v2 = player.V;
+                                v.Y = x.GetSpeed;
+                                player.V = v;
+                                player.isStanding = true;
+                            }
+                            if (p.GetType() == typeof(HorizontalPlat))
+                            {
+                                HorizontalPlat x = (HorizontalPlat)p;
+                                Vector2 v2 = player.V;
+                                v.X = x.GetSpeed;
+                                player.V = v + player.V;
+                                player.isStanding = true;
+                            }
                         }
 
                         player.V = v;
                         player.Advance(0);
                     }
-                    else
-                    {
-                        //Player is not colliding with anything.
-                        if (player.V.Y != 0)
-                        {
-                             player.isStanding = false;
-                        }
-                    }
+
                 }
 
                 delta -= step;
@@ -366,7 +377,7 @@ namespace StepDX
                     sounds.Jump();
                     player.isStanding = false;
                     Vector2 v = player.V;
-                    v.Y = 7;
+                    v.Y = 6.5f;
                     player.V = v;
                     player.A = new Vector2(0, -9.8f);
                 }

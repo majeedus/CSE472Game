@@ -38,8 +38,11 @@ namespace StepDX
         /// How high we go
         /// </summary>
         private float maxWidth = 1;
+        private float actualSpeed;
 
+        public float GetSpeed { get { return actualSpeed; } }
         public float Speed {get {return speed;} set { speed = value;}}
+        public float Width { get { return maxWidth; } set { maxWidth = value; } }
 
         /// <summary>
         /// Save the current platform position state
@@ -75,10 +78,12 @@ namespace StepDX
             {
                 // Even, rising
                 w = maxWidth * (time - step * speed) / speed;
+                actualSpeed = maxWidth/speed;
             }
             else
             {
-                w = 1 - maxWidth * (time - step * speed) / speed;
+                w = maxWidth * (1-(time - step * speed) / speed);
+                actualSpeed = maxWidth/speed * -1;
             }
 
             // Move it
