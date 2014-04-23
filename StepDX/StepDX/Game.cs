@@ -113,12 +113,13 @@ namespace StepDX
             finishLineTexture = TextureLoader.FromFile(device, "../../finishlineplatform.bmp");
             
             Polygon startingPlat = new Polygon();
-            startingPlat.AddVertex(new Vector2(0, 1));
-            startingPlat.AddVertex(new Vector2(.5f, 1));
-            startingPlat.AddVertex(new Vector2(.5f, 0.9f));
-            startingPlat.AddVertex(new Vector2(0, 0.9f));
+            startingPlat.AddVertex(new Vector2(0, .1f));
+            startingPlat.AddVertex(new Vector2(.5f, .1f));
+            startingPlat.AddVertex(new Vector2(.5f, 0));
+            startingPlat.AddVertex(new Vector2(0, 0));
             startingPlat.Color = Color.CornflowerBlue;
             world.Add(startingPlat);
+            
             
             /* Remove this code later
             AddObstacle(2, 3, 1.7f, 1.9f, Color.Crimson);
@@ -136,13 +137,23 @@ namespace StepDX
             platform.Color = Color.CornflowerBlue;
             world.Add(platform);
 
-            //addTexturedPolygon(left, right, bottom, top, outer, path)
-            addTexturedPolygon(1.2f, 1.9f, 2.4f, 2.6f, 2.5f, stoneTexture);
-            addTexturedPolygon(2, 3, 1.7f, 1.9f, 1.5f, texture1);
-            addTexturedPolygon(5, 6, 2.2f, 2.4f, 1.5f, texture2);
-            addTexturedPolygon(5.5f, 6.5f, 3.2f, 3.4f, 2.8f, texture4);
-            addTexturedPolygon(6.5f, 7.5f, 2.5f, 2.7f, 2.0f, texture5);
+            HorizontalPlat platform2 = new HorizontalPlat();
+            platform2.AddVertex(new Vector2(11, 2));
+            platform2.AddVertex(new Vector2(11.7f, 2));
+            platform2.AddVertex(new Vector2(11.7f, 1.8f));
+            platform2.AddVertex(new Vector2(11.2f, 1.8f));
+            platform2.Speed = 5;
+            platform2.Color = Color.Red;
+            platform2.Width = 4;
+            world.Add(platform2);
 
+            //addTexturedPolygon(left, right, bottom, top, outer, path)
+            addTexturedPolygon(1.2f, 1.9f, 1.4f, 1.6f, 1.3f, stoneTexture); //1st plat
+            addTexturedPolygon(6, 7, 1.7f, 1.9f, 1.5f, texture1);   //3rd after moving
+
+            addTexturedPolygon(9, 10, 1.2f, 1.4f, 1.0f, texture4);
+            addTexturedPolygon(15, 16, 2.5f, 2.7f, 2.0f, texture5);
+            addTexturedPolygon(18, 20, 2.2f, 2.4f, 1.5f, texture2);
             /* Remove this code later...
             Texture texture = TextureLoader.FromFile(device, "../../stone08.bmp");
             PolygonTextured pt = new PolygonTextured();
@@ -224,7 +235,7 @@ namespace StepDX
 
                 foreach (Polygon p in world)
                     p.Advance(step);
-
+                player.isStanding = false;
                 foreach (Polygon p in world)
                 {
                     if (collision.Test(player, p))
@@ -237,6 +248,7 @@ namespace StepDX
                         if (collision.N.X != 0)
                         {
                             v.X = 0;
+
                         }
                         if (collision.N.Y != 0)
                         {
@@ -246,19 +258,28 @@ namespace StepDX
                                 //Check that player didn't just hit its head on ceiling
                                 player.isStanding = true;
                             }
+                            if (p.GetType() == typeof(Platform))
+                            {
+                                Platform x = (Platform)p;
+                                Vector2 v2 = player.V;
+                                v.Y = x.GetSpeed;
+                                player.V = v;
+                                player.isStanding = true;
+                            }
+                            if (p.GetType() == typeof(HorizontalPlat))
+                            {
+                                HorizontalPlat x = (HorizontalPlat)p;
+                                Vector2 v2 = player.V;
+                                v.X = x.GetSpeed;
+                                player.V = v + player.V;
+                                player.isStanding = true;
+                            }
                         }
 
                         player.V = v;
                         player.Advance(0);
                     }
-                    else
-                    {
-                        //Player is not colliding with anything.
-                        if (player.V.Y != 0)
-                        {
-                             player.isStanding = false;
-                        }
-                    }
+
                 }
 
                 delta -= step;
@@ -381,7 +402,7 @@ namespace StepDX
                     sounds.Jump();
                     player.isStanding = false;
                     Vector2 v = player.V;
-                    v.Y = 7;
+                    v.Y = 6.5f;
                     player.V = v;
                     player.A = new Vector2(0, -9.8f);
                 }

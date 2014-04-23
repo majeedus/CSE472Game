@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="GameSounds.cs" />
     <Compile Include="GameSprite.cs" />
+    <Compile Include="HorizontalPlat.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="PolygonTextured.cs" />

@@ -25,6 +25,7 @@ namespace StepDX
         private float spriteTime = 0;
         private float spriteRate = 6;   // 6 per second
 
+        
         public Boolean isStanding = true;
 
         public void SaveState()
