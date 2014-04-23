@@ -7,7 +7,7 @@ using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
 namespace StepDX
 {
-    public class Projectile : Polygon
+    public class Projectile : PolygonTextured
     {
 
                   /// <summary>

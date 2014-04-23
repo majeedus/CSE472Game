@@ -71,7 +71,7 @@ namespace StepDX
         private Texture texture6;
         private Texture stoneTexture;
         private Texture finishLineTexture;
-        private ProjectileGenerator projectileGen = new ProjectileGenerator();
+        private ProjectileGenerator projectileGen;
         private Microsoft.DirectX.Direct3D.Font font;
 
         private int scoreLostPerSecond = 10;
@@ -124,6 +124,7 @@ namespace StepDX
             texture6 = TextureLoader.FromFile(device, "../../texture6.bmp");
             stoneTexture = TextureLoader.FromFile(device, "../../stone08.bmp");
             finishLineTexture = TextureLoader.FromFile(device, "../../finishlineplatform.bmp");
+            projectileGen = new ProjectileGenerator(device);
             
             Polygon startingPlat = new Polygon();
             startingPlat.AddVertex(new Vector2(0, .1f));
