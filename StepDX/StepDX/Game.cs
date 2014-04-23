@@ -61,7 +61,7 @@ namespace StepDX
         /// The collision testing subsystem
         /// </summary>
         Collision collision = new Collision();
-
+        //Testing
         public Game()
         {
             InitializeComponent();
