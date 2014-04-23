@@ -5,10 +5,9 @@ using System.Text;
 using System.Drawing;
 using Microsoft.DirectX;
 using Microsoft.DirectX.Direct3D;
-
 namespace StepDX
 {
-    public class Platform : Polygon
+    public class HorizontalPlat : Polygon
     {
         /// <summary>
         /// Vertices after we move them
@@ -35,13 +34,12 @@ namespace StepDX
         /// </summary>
         private float speed = 1;
 
-
-        public float Speed { get { return speed; } set { speed = value; } }
-
         /// <summary>
         /// How high we go
         /// </summary>
-        private float maxHeight = 1;
+        private float maxWidth = 1;
+
+        public float Speed {get {return speed;} set { speed = value;}}
 
         /// <summary>
         /// Save the current platform position state
@@ -70,24 +68,24 @@ namespace StepDX
             // I'm going to base my height entirely on the current time.
             // From 0 to speed, we are rising, speed to 2*speed we are 
             // falling.  So we need to know what step we are in.
-            float h;
+            float w;
 
             int step = (int)(time / speed);
             if (step % 2 == 0)
             {
                 // Even, rising
-                h = maxHeight * (time - step * speed) / speed;
+                w = maxWidth * (time - step * speed) / speed;
             }
             else
             {
-                h = 1 - maxHeight * (time - step * speed) / speed;
+                w = 1 - maxWidth * (time - step * speed) / speed;
             }
 
             // Move it
             verticesM.Clear();
             foreach (Vector2 v in verticesB)
             {
-                verticesM.Add(v + new Vector2(0, h));
+                verticesM.Add(v + new Vector2(w, 0));
             }
 
         }
