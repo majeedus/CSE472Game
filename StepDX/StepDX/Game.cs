@@ -179,7 +179,7 @@ namespace StepDX
             addTexturedPolygon(24.5f, 25, 2.2f, 2.4f, 1.5f, texture3);
             addTexturedPolygon(27, 29, 2.2f, 2.4f, 1.5f, texture6);
 
-            PolygonTextured pt = new PolygonTextured();
+            FinishPlat pt = new FinishPlat();
             pt.Tex = finishLineTexture;
             pt.AddVertex(new Vector2(30, 1.5f)); //A
             pt.AddTex(new Vector2(0, 0));
@@ -192,15 +192,15 @@ namespace StepDX
             pt.Color = Color.Transparent;
             world.Add(pt);
 
-            Texture spritetexture = TextureLoader.FromFile(device, "../../guy8.bmp");
+            Texture spritetexture = TextureLoader.FromFile(device, "../../mario8.png");
             player.Tex = spritetexture;
-            player.AddVertex(new Vector2(-0.2f, 0));
+            player.AddVertex(new Vector2(-0.4f, 0));
             player.AddTex(new Vector2(0, 1));
-            player.AddVertex(new Vector2(-0.2f, 1));
+            player.AddVertex(new Vector2(-0.4f, 0.5f));
             player.AddTex(new Vector2(0, 0));
-            player.AddVertex(new Vector2(0.2f, 1));
+            player.AddVertex(new Vector2(0.4f, 0.5f));
             player.AddTex(new Vector2(0.125f, 0));
-            player.AddVertex(new Vector2(0.2f, 0));
+            player.AddVertex(new Vector2(0.4f, 0));
             player.AddTex(new Vector2(0.125f, 1));
             player.Color = Color.Transparent;
             player.Transparent = true;
@@ -308,6 +308,10 @@ namespace StepDX
                                 v.X = x.GetSpeed;
                                 player.isStanding = true;
 
+                            }
+                            if (p.GetType() == typeof(FinishPlat))
+                            {
+                                GameWon();
                             }
                         }
 
@@ -473,6 +477,13 @@ namespace StepDX
         private void GameOver()
         {
             System.Windows.Forms.MessageBox.Show("You lose!");
+            stopwatch.Reset();
+            Reset();
+        }
+
+        private void GameWon()
+        {
+            System.Windows.Forms.MessageBox.Show("You Win!\n Score: " + score);
             stopwatch.Reset();
             Reset();
         }
