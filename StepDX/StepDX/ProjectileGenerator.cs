@@ -38,7 +38,8 @@ namespace StepDX
                 projectile.AddTex(new Vector2(1, 0));
                 projectile.AddVertex(new Vector2(32.5f, location));
                 projectile.AddTex(new Vector2(1, 1));
-                //projectile.Color = Color.Transparent;
+                projectile.Color = Color.Transparent;
+                projectile.Transparent = true;
                 
                 projectile.Speed = 20;
 
