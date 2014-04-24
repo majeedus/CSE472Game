@@ -274,9 +274,21 @@ namespace StepDX
                                   collision.Depth : -collision.Depth;
                         player.P = player.P + collision.N * depth;
                         Vector2 v = player.V;
-                        if (p.GetType() == typeof(Projectile))
+                        if (p is Projectile)
                         {
-                            PlayerDied();
+                            if (collision.N.Y != -1 && collision.N.X == 0)
+                            {
+                                v.Y = -1 * player.V.Y;
+                                v.Y = (v.Y < 5) ? v.Y : 5;
+                                player.V = v;
+                                ((Projectile)p).DropRate = -5;
+                                continue;
+                            }
+                            else
+                            {
+                                PlayerDied();
+                                continue;
+                            }
                         }
                         if (collision.N.X != 0)
                         {
@@ -292,7 +304,7 @@ namespace StepDX
                                 //Check that player didn't just hit its head on ceiling
                                 player.isStanding = true;
                             }
-                            if (p.GetType() == typeof(Platform))
+                            if (p is Platform)
                             {
                                 Platform x = (Platform)p;
                                 Vector2 v2 = player.V;
@@ -300,7 +312,7 @@ namespace StepDX
                                 player.V = v;
                                 player.isStanding = true;
                             }
-                            if (p.GetType() == typeof(HorizontalPlat))
+                            if (p is HorizontalPlat)
                             {
                                 HorizontalPlat x = (HorizontalPlat)p;
                                 Vector2 v2 = player.V;
@@ -309,7 +321,7 @@ namespace StepDX
                                 player.isStanding = true;
 
                             }
-                            if (p.GetType() == typeof(FinishPlat))
+                            if (p is FinishPlat)
                             {
                                 GameWon();
                             }

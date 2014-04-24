@@ -33,14 +33,16 @@ namespace StepDX
         /// <summary>
         /// Speed in meters per second
         /// </summary>
-        private float speed = 1;
+        private Vector2 speed = new Vector2(1, 0);
 
         /// <summary>
         /// How wide we go
         /// </summary>
         float maxWidth = 32;
 
-        public float Speed {get {return speed;} set { speed = value;}}
+        public float Speed {get {return speed.X;} set { speed.X = value;}}
+
+        public float DropRate { get { return speed.Y; } set { speed.Y = value; } }
 
         /// <summary>
         /// Save the current platform position state
@@ -88,21 +90,22 @@ namespace StepDX
             // falling.  So we need to know what step we are in.
             float w;
 
-            int step = (int)(time / speed);
+            int step = (int)(time / speed.X);
 
                 // Even, rising
-            w = -maxWidth * (time - step * speed) / speed;
+            w = -maxWidth * (time - step * speed.X) / speed.X;
 
 
             // Move it
             verticesM.Clear();
             foreach (Vector2 v in verticesB)
             {
-                verticesM.Add(v + new Vector2(w, 0));
+                verticesM.Add(v + new Vector2(w, speed.Y));
             }
 
         
 
         }
+
     }
 }
