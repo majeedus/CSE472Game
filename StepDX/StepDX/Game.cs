@@ -502,6 +502,7 @@ namespace StepDX
             sounds.GameOver();
             System.Windows.Forms.MessageBox.Show("You lose!");
             stopwatch.Reset();
+            ClearBullets();
             ResetGame();
         }
 
@@ -510,9 +511,24 @@ namespace StepDX
             sounds.GameWon();
             System.Windows.Forms.MessageBox.Show("You Win!\n Score: " + score);
             stopwatch.Reset();
+            ClearBullets();
             ResetGame();
         }
 
-
+        private void ClearBullets()
+        {
+            List<Polygon> deletes = new List<Polygon>();
+            foreach (var p in world)
+            {
+                if (p is Projectile)
+                {
+                    deletes.Add(p);
+                }
+            }
+            foreach (var p in deletes)
+            {
+                world.Remove(p);
+            }
+        }
     }
 }
