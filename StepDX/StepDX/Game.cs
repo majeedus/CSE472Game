@@ -282,6 +282,7 @@ namespace StepDX
                         {
                             if (collision.N.Y != -1 && collision.N.X == 0)
                             {
+                                sounds.Kick();
                                 v.Y = -1 * player.V.Y;
                                 v.Y = (v.Y < 5) ? v.Y : 5;
                                 player.V = v;
