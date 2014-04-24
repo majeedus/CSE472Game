@@ -196,7 +196,7 @@ namespace StepDX
             pt.Color = Color.Transparent;
             world.Add(pt);
 
-            Texture spritetexture = TextureLoader.FromFile(device, "../../2mario8.png");
+            Texture spritetexture = TextureLoader.FromFile(device, "../../mario8.png");
             player.Tex = spritetexture;
             player.AddVertex(new Vector2(-0.2f, 0));
             player.AddTex(new Vector2(0, 1));
