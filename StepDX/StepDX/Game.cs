@@ -329,6 +329,7 @@ namespace StepDX
                             if (p is FinishPlat)
                             {
                                 GameWon();
+                                return;
                             }
                         }
 
