@@ -77,6 +77,8 @@ namespace StepDX
         private int scoreLostPerSecond = 10;
         private int score = 1000;
 
+        private ScorePersist scores;
+
         /// <summary>
         /// Jump sounds class
         /// </summary>
@@ -211,6 +213,9 @@ namespace StepDX
             player.P = new Vector2(0.5f, 1);
             player.A = new Vector2(0, -9.8f);
             currentPlat = null;
+
+            scores = new ScorePersist("../../highscores.xml");
+            scores.Load();
         }
 
         public void addTexturedPolygon(float left, float right, float bottom, float top, float outer, Texture texture)
@@ -501,7 +506,11 @@ namespace StepDX
         private void GameOver()
         {
             sounds.GameOver();
-            System.Windows.Forms.MessageBox.Show("You lose!");
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("You lose!");
+            builder.AppendLine("High Scores:");
+            builder.Append(scores.GetHighScores().GenerateScoreCard());
+            System.Windows.Forms.MessageBox.Show(builder.ToString());
             stopwatch.Reset();
             ClearBullets();
             ResetGame();
@@ -510,7 +519,13 @@ namespace StepDX
         private void GameWon()
         {
             sounds.GameWon();
-            System.Windows.Forms.MessageBox.Show("You Win!\n Score: " + score);
+            string playerName = NamePrompt.ShowDialog(score);
+            scores.AddScore(playerName, score);
+            scores.Save();
+            StringBuilder builder = new StringBuilder();
+            builder.AppendLine("High Scores:");
+            builder.Append(scores.GetHighScores().GenerateScoreCard());
+            System.Windows.Forms.MessageBox.Show(builder.ToString());
             stopwatch.Reset();
             ClearBullets();
             ResetGame();
