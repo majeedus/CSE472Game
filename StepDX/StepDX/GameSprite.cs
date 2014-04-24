@@ -54,15 +54,6 @@ namespace StepDX
             v.Y += a.Y * dt;
             p.X += v.X * dt;
             p.Y += v.Y * dt;
-
-            if (p.X < 0)
-            {
-                p.X = 0;
-            }
-            else if (p.X > 32)
-            {
-                p.X = 32;
-            }
             
 
             int spriteNum;

@@ -125,7 +125,11 @@ namespace StepDX
             stoneTexture = TextureLoader.FromFile(device, "../../stone08.bmp");
             finishLineTexture = TextureLoader.FromFile(device, "../../finishlineplatform.bmp");
             projectileGen = new ProjectileGenerator(device);
-            
+
+            //Create barrier to keep player from walking off edges
+            AddObstacle(-0.1f, 0, int.MinValue, int.MaxValue, Color.MintCream);
+            AddObstacle(playingW, playingW + 0.1f, int.MinValue, int.MaxValue, Color.MintCream);
+
             Polygon startingPlat = new Polygon();
             startingPlat.AddVertex(new Vector2(0, .1f));
             startingPlat.AddVertex(new Vector2(.5f, .1f));
@@ -192,15 +196,15 @@ namespace StepDX
             pt.Color = Color.Transparent;
             world.Add(pt);
 
-            Texture spritetexture = TextureLoader.FromFile(device, "../../mario8.png");
+            Texture spritetexture = TextureLoader.FromFile(device, "../../2mario8.png");
             player.Tex = spritetexture;
-            player.AddVertex(new Vector2(-0.4f, 0));
+            player.AddVertex(new Vector2(-0.2f, 0));
             player.AddTex(new Vector2(0, 1));
-            player.AddVertex(new Vector2(-0.4f, 0.5f));
+            player.AddVertex(new Vector2(-0.2f, 0.5f));
             player.AddTex(new Vector2(0, 0));
-            player.AddVertex(new Vector2(0.4f, 0.5f));
+            player.AddVertex(new Vector2(0.2f, 0.5f));
             player.AddTex(new Vector2(0.125f, 0));
-            player.AddVertex(new Vector2(0.4f, 0));
+            player.AddVertex(new Vector2(0.2f, 0));
             player.AddTex(new Vector2(0.125f, 1));
             player.Color = Color.Transparent;
             player.Transparent = true;
