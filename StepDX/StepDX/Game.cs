@@ -74,7 +74,6 @@ namespace StepDX
         private ProjectileGenerator projectileGen;
         private Microsoft.DirectX.Direct3D.Font font;
 
-        private int scoreLostPerSecond = 10;
         private int score = 1000;
 
         private ScorePersist scores;
