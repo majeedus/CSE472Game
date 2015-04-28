@@ -23,11 +23,11 @@ namespace StepDX
             SoundDevice = new Device();
             SoundDevice.SetCooperativeLevel(form, CooperativeLevel.Priority);
 
-            Load(ref jump, "../../jump.wav");
-            Load(ref die, "../../mariodie.wav");
-            Load(ref gameend, "../../die.wav");
-            Load(ref gamewon, "../../stage_clear.wav");
-            Load(ref kick, "../../kick.wav");
+            Load(ref jump, "../../wav/ready.wav");
+            Load(ref die, "../../wav/death.wav");
+            Load(ref gameend, "../../wav/defeat.wav");
+            Load(ref gamewon, "../../wav/victory.wav");
+            Load(ref kick, "../../wav/attack.wav");
         }
 
         private void Load(ref SecondaryBuffer buffer, string filename)
