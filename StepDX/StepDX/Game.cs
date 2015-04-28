@@ -123,7 +123,7 @@ namespace StepDX
             texture4 = TextureLoader.FromFile(device, "../../texture4.bmp");
             texture5 = TextureLoader.FromFile(device, "../../texture5.bmp");
             texture6 = TextureLoader.FromFile(device, "../../texture6.bmp");
-            stoneTexture = TextureLoader.FromFile(device, "../../stone08.bmp");
+            stoneTexture = TextureLoader.FromFile(device, "../../texture7.bmp");
             finishLineTexture = TextureLoader.FromFile(device, "../../finishlineplatform.bmp");
             projectileGen = new ProjectileGenerator(device);
 
@@ -197,7 +197,7 @@ namespace StepDX
             pt.Color = Color.Transparent;
             world.Add(pt);
 
-            Texture spritetexture = TextureLoader.FromFile(device, "../../mario8.png");
+            Texture spritetexture = TextureLoader.FromFile(device, "../../alien.png");
             player.Tex = spritetexture;
             player.AddVertex(new Vector2(-0.2f, 0));
             player.AddTex(new Vector2(0, 1));
