@@ -506,8 +506,8 @@ namespace StepDX
         {
             sounds.Defeat();
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("You lose!");
-            builder.AppendLine("High Scores:");
+            builder.AppendLine("You lost the game!");
+            builder.AppendLine("Hall of Fame:");
             builder.Append(scores.GetHighScores().GenerateScoreCard());
             System.Windows.Forms.MessageBox.Show(builder.ToString());
             stopwatch.Reset();
@@ -522,7 +522,7 @@ namespace StepDX
             scores.AddScore(playerName, score);
             scores.Save();
             StringBuilder builder = new StringBuilder();
-            builder.AppendLine("High Scores:");
+            builder.AppendLine("Hall of Fame:");
             builder.Append(scores.GetHighScores().GenerateScoreCard());
             System.Windows.Forms.MessageBox.Show(builder.ToString());
             stopwatch.Reset();
