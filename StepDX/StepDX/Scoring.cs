@@ -29,7 +29,7 @@ namespace StepDX
             }
             scoreboard = scoreboard ?? new XDocument(
                 new XDeclaration("1.0", "utf-8", "yes"),
-                new XComment("Mario App Scoreboard Persistent Storage"),
+                new XComment("App Scoreboard"),
                 new XElement("scoreboard"));
         }
 
