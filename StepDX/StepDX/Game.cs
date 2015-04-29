@@ -81,7 +81,7 @@ namespace StepDX
         /// <summary>
         /// Jump sounds class
         /// </summary>
-        private GameSounds sounds;
+        private AlienSound sounds;
 
         public Game()
         {
@@ -90,7 +90,7 @@ namespace StepDX
             if (!InitializeDirect3D())
                 return;
 
-            sounds = new GameSounds(this);
+            sounds = new AlienSound(this);
 
             vertices = new VertexBuffer(typeof(CustomVertex.PositionColored), // Type of vertex
                                         4,      // How many
@@ -246,7 +246,7 @@ namespace StepDX
             score = 1000 - (int)time / 100;
             if (score < 0)
             {
-                GameOver();
+                Defeat();
             }
             currentPlat = null;
             float delta = (time - lastTime) * 0.001f;       // Delta time in milliseconds
@@ -286,7 +286,7 @@ namespace StepDX
                         {
                             if (collision.N.Y != -1 && collision.N.X == 0)
                             {
-                                sounds.Kick();
+                                sounds.Attack();
                                 v.Y = -1 * player.V.Y;
                                 v.Y = (v.Y < 5) ? v.Y : 5;
                                 player.V = v;
@@ -332,7 +332,7 @@ namespace StepDX
                             }
                             if (p is FinishPlat)
                             {
-                                GameWon();
+                                Victory();
                                 return;
                             }
                         }
@@ -502,9 +502,9 @@ namespace StepDX
             ResetGame();
         }
 
-        private void GameOver()
+        private void Defeat()
         {
-            sounds.GameOver();
+            sounds.Defeat();
             StringBuilder builder = new StringBuilder();
             builder.AppendLine("You lose!");
             builder.AppendLine("High Scores:");
@@ -515,9 +515,9 @@ namespace StepDX
             ResetGame();
         }
 
-        private void GameWon()
+        private void Victory()
         {
-            sounds.GameWon();
+            sounds.Victory();
             string playerName = NamePrompt.ShowDialog(score);
             scores.AddScore(playerName, score);
             scores.Save();

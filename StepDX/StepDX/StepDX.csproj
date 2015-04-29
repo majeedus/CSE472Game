@@ -71,7 +71,7 @@
     <Compile Include="Game.Designer.cs">
       <DependentUpon>Game.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameSounds.cs" />
+    <Compile Include="AlienSound.cs" />
     <Compile Include="GameSprite.cs" />
     <Compile Include="HighScores.cs" />
     <Compile Include="HorizontalPlat.cs" />
