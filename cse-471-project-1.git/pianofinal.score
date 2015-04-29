@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<score bpm="120" beatspermeasure="4">
+   <instrument instrument="Piano">
+      <note measure="1" beat="4" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  
+	  <note measure="2" beat="1" duration="0.2" note="CompletePiano\pedald.wav" amplitude="0.2"/>
+	  <note measure="2" beat="1" duration="1.9" note="CompletePiano\G4l.wav" setdampening="1.0"/>
+	  <note measure="2" beat="2.5" duration="0.2" note="CompletePiano\pedalu.wav" amplitude="0.2"/>
+      <note measure="2" beat="3" duration="0.9" note="CompletePiano\E4l.wav"/>  
+      <note measure="2" beat="4" duration="0.9" note="CompletePiano\A4l.wav"/>
+	  
+	  <note measure="3" beat="1" duration="0.2" note="CompletePiano\pedald.wav" amplitude="0.2"/>
+	  <note measure="3" beat="1" duration="1.9" note="CompletePiano\G4l.wav" setdampening="1.0"/>
+	  <note measure="3" beat="2.5" duration="0.2" note="CompletePiano\pedalu.wav" amplitude="0.2"/>
+	  <note measure="3" beat="3" duration="0.9" note="CompletePiano\E4l.wav"/> 
+	  <note measure="3" beat="4" duration="0.9" note="CompletePiano\E4l.wav"/> 
+	  
+	  <note measure="4" beat="1" duration="0.2" note="CompletePiano\pedald.wav" amplitude="0.2"/>
+	  <note measure="4" beat="1" duration="1.9" note="CompletePiano\G4l.wav" setdampening="1.0"/>
+	  <note measure="4" beat="2.5" duration="0.2" note="CompletePiano\pedalu.wav" amplitude="0.2"/>
+      <note measure="4" beat="3" duration="0.9" note="CompletePiano\E4l.wav"/>  
+      <note measure="4" beat="4" duration="0.9" note="CompletePiano\A4l.wav"/>
+	  
+	  <note measure="5" beat="1" duration="0.2" note="CompletePiano\pedald.wav" amplitude="0.2"/>
+	  <note measure="5" beat="1" duration="1.9" note="CompletePiano\G4l.wav" setdampening="1.0"/>
+	  <note measure="5" beat="2.5" duration="0.2" note="CompletePiano\pedalu.wav" amplitude="0.2"/>
+	  <note measure="5" beat="3" duration="1.9" note="CompletePiano\E4l.wav"/>
+	  
+	  <note measure="6" beat="1" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  <note measure="6" beat="2" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  <note measure="6" beat="3" duration="0.9" note="CompletePiano\E4l.wav"/>
+	  <note measure="6" beat="4" duration="0.9" note="CompletePiano\E4l.wav"/>  
+      <note measure="6" beat="4" duration="0.9" note="CompletePiano\A4l.wav"/>
+	  
+	  <note measure="7" beat="1" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  <note measure="7" beat="2" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  <note measure="7" beat="3" duration="0.9" note="CompletePiano\E4l.wav"/>
+	  <note measure="7" beat="4" duration="0.9" note="CompletePiano\E4l.wav"/>  
+      <note measure="7" beat="4" duration="0.9" note="CompletePiano\A4l.wav"/>
+	  
+	  <note measure="8" beat="1" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  <note measure="8" beat="1" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  <note measure="8" beat="2" duration="0.9" note="CompletePiano\G4l.wav"/>
+	  <note measure="8" beat="3" duration="0.9" note="CompletePiano\E4l.wav"/>
+	  <note measure="8" beat="4" duration="0.9" note="CompletePiano\E4l.wav"/>  
+      <note measure="8" beat="4" duration="0.9" note="CompletePiano\A4l.wav"/>
+	  
+	  <note measure="9" beat="1" duration="0.2" note="CompletePiano\pedald.wav" amplitude="0.2"/>
+	  <note measure="9" beat="1" duration="1.9" note="CompletePiano\G4l.wav" setdampening="1.0"/>
+	  <note measure="9" beat="2.5" duration="0.2" note="CompletePiano\pedalu.wav" amplitude="0.2"/>
+	  <note measure="9" beat="3" duration="0.9" note="CompletePiano\E4l.wav"/> 
+   </instrument>
+</score>
