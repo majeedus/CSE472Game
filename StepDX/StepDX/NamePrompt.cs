@@ -18,7 +18,7 @@ namespace StepDX
             builder.Append("Score: ");
             builder.Append(score);
             builder.Append("\n");
-            builder.AppendLine("Enter your name: ");
+            builder.AppendLine("Your name? : ");
             prompt.Text = "Victory!";
             Label textLabel = new Label() { Left = 50, Top = 20, Height = 60, Text = builder.ToString() };
             TextBox textBox = new TextBox() { Left = 50, Top = 80, Width = 200 };
