@@ -6,13 +6,13 @@ using System.Xml.Linq;
 
 namespace StepDX
 {
-    class ScorePersist
+    class Scoring
     {
         private string persistenceFilename;
 
         private XDocument scoreboard;
 
-        public ScorePersist(string fileName)
+        public Scoring(string fileName)
         {
             persistenceFilename = fileName;
         }

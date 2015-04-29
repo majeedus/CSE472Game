@@ -8,7 +8,7 @@ using Microsoft.DirectX.Direct3D;
 
 namespace StepDX
 {
-    public class FinishPlat : Polygon
+    public class EndPlat : Polygon
     {
         /// <summary>
         /// The texture map we use for this polygon

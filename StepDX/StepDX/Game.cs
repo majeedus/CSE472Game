@@ -76,7 +76,7 @@ namespace StepDX
 
         private int score = 1000;
 
-        private ScorePersist scores;
+        private Scoring scores;
 
         /// <summary>
         /// Jump sounds class
@@ -184,7 +184,7 @@ namespace StepDX
             addTexturedPolygon(24.5f, 25, 2.2f, 2.4f, 1.5f, texture3);
             addTexturedPolygon(27, 29, 2.2f, 2.4f, 1.5f, texture6);
 
-            FinishPlat pt = new FinishPlat();
+            EndPlat pt = new EndPlat();
             pt.Tex = finishLineTexture;
             pt.AddVertex(new Vector2(30, 1.5f)); //A
             pt.AddTex(new Vector2(0, 0));
@@ -213,7 +213,7 @@ namespace StepDX
             player.A = new Vector2(0, -9.8f);
             currentPlat = null;
 
-            scores = new ScorePersist("../../highscores.xml");
+            scores = new Scoring("../../highscores.xml");
             scores.Load();
         }
 
@@ -330,7 +330,7 @@ namespace StepDX
                                 player.isStanding = true;
 
                             }
-                            if (p is FinishPlat)
+                            if (p is EndPlat)
                             {
                                 Victory();
                                 return;
@@ -518,7 +518,7 @@ namespace StepDX
         private void Victory()
         {
             sounds.Victory();
-            string playerName = NamePrompt.ShowDialog(score);
+            string playerName = ScorePrompt.ShowDialog(score);
             scores.AddScore(playerName, score);
             scores.Save();
             StringBuilder builder = new StringBuilder();

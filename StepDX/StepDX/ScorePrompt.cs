@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace StepDX
 {
-    public static class NamePrompt
+    public static class ScorePrompt
     {
         public static string ShowDialog(int score)
         {
