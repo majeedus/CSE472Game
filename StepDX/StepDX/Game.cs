@@ -518,7 +518,7 @@ namespace StepDX
         private void Victory()
         {
             sounds.Victory();
-            string playerName = ScorePrompt.ShowDialog(score);
+            string playerName = Scoring.DialogBox(score);
             scores.AddScore(playerName, score);
             scores.Save();
             StringBuilder builder = new StringBuilder();

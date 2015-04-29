@@ -41,7 +41,7 @@ namespace StepDX
                 projectile.Color = Color.Transparent;
                 projectile.Transparent = true;
                 
-                projectile.Speed = 20;
+                projectile.Speed = 15;
 
                 
                 //projectile.Tex = 

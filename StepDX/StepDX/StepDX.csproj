@@ -75,7 +75,6 @@
     <Compile Include="GameSprite.cs" />
     <Compile Include="HighScores.cs" />
     <Compile Include="HorizontalPlat.cs" />
-    <Compile Include="ScorePrompt.cs" />
     <Compile Include="Platform.cs" />
     <Compile Include="Polygon.cs" />
     <Compile Include="PolygonTextured.cs" />
