@@ -136,15 +136,15 @@ namespace StepDX
             startingPlat.AddVertex(new Vector2(.5f, .1f));
             startingPlat.AddVertex(new Vector2(.5f, 0));
             startingPlat.AddVertex(new Vector2(0, 0));
-            startingPlat.Color = Color.CornflowerBlue;
+            startingPlat.Color = Color.DarkSlateGray;
             world.Add(startingPlat);
 
             Platform platform = new Platform();
             platform.AddVertex(new Vector2(3.2f, 2));
-            platform.AddVertex(new Vector2(3.9f, 2));
-            platform.AddVertex(new Vector2(3.9f, 1.8f));
+            platform.AddVertex(new Vector2(4.3f, 2));
+            platform.AddVertex(new Vector2(4.3f, 1.8f));
             platform.AddVertex(new Vector2(3.2f, 1.8f));
-            platform.Color = Color.GreenYellow;
+            platform.Color = Color.DarkSlateGray;
             world.Add(platform);
 
             Platform platform4 = new Platform();
@@ -152,7 +152,7 @@ namespace StepDX
             platform4.AddVertex(new Vector2(21.5f, 2));
             platform4.AddVertex(new Vector2(21.5f, 1.8f));
             platform4.AddVertex(new Vector2(21, 1.8f));
-            platform4.Color = Color.IndianRed;
+            platform4.Color = Color.DarkSlateGray;
             world.Add(platform4);
 
             Platform platform5 = new Platform();
@@ -160,25 +160,25 @@ namespace StepDX
             platform5.AddVertex(new Vector2(23.5f, 2));
             platform5.AddVertex(new Vector2(23.5f, 1.8f));
             platform5.AddVertex(new Vector2(23, 1.8f));
-            platform5.Color = Color.MediumSeaGreen;
+            platform5.Color = Color.DarkSlateGray;
             platform5.setDtOffset(0.01f);
             world.Add(platform5);
 
             HorizontalPlat platform2 = new HorizontalPlat();
             platform2.AddVertex(new Vector2(11, 2));
-            platform2.AddVertex(new Vector2(11.7f, 2));
-            platform2.AddVertex(new Vector2(11.7f, 1.8f));
-            platform2.AddVertex(new Vector2(11.2f, 1.8f));
-            platform2.Speed = 2.5f;
-            platform2.Color = Color.Red;
+            platform2.AddVertex(new Vector2(12f, 2));
+            platform2.AddVertex(new Vector2(12f, 1.8f));
+            platform2.AddVertex(new Vector2(11f, 1.8f));
+            platform2.Speed = 1f;
+            platform2.Color = Color.DarkSlateGray;
             platform2.Width = 4;
             world.Add(platform2);
 
             //addTexturedPolygon(left, right, bottom, top, outer, texture)
             addTexturedPolygon(1.2f, 1.9f, 1.4f, 1.6f, 1.3f, stoneTexture); //1st plat
-            addTexturedPolygon(6, 7, 1.7f, 1.9f, 1.5f, texture1);   //3rd after moving
+            addTexturedPolygon(6, 7, 1.7f, 3f, 1.5f, texture1);   //3rd after moving
 
-            addTexturedPolygon(9, 10, 1.2f, 1.4f, 1.0f, texture4);
+            addTexturedPolygon(9, 10, 1.2f, 1.7f, 1.0f, texture4);
             addTexturedPolygon(15, 16, 2.5f, 2.7f, 2.0f, texture5);
             addTexturedPolygon(18, 20, 2.2f, 2.4f, 1.5f, texture2);
             addTexturedPolygon(24.5f, 25, 2.2f, 2.4f, 1.5f, texture3);
@@ -193,7 +193,7 @@ namespace StepDX
             pt.AddVertex(new Vector2(32, 0.5f)); //C
             pt.AddTex(new Vector2(1, 1));
             pt.AddVertex(new Vector2(30, 0.5f));
-            pt.AddTex(new Vector2(0, 1));
+            pt.AddTex(new Vector2(0, 1));   
             pt.Color = Color.Transparent;
             world.Add(pt);
 
