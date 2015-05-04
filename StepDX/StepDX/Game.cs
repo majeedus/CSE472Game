@@ -118,7 +118,7 @@ namespace StepDX
             lastTime = stopwatch.ElapsedMilliseconds;
 
             texture1 = TextureLoader.FromFile(device, "../../texture1.bmp");
-            texture2 = TextureLoader.FromFile(device, "../../texture2.bmp");
+            texture2 = TextureLoader.FromFile(device, "../../texture2.png");
             texture3 = TextureLoader.FromFile(device, "../../texture3.bmp");
             texture4 = TextureLoader.FromFile(device, "../../texture4.bmp");
             texture5 = TextureLoader.FromFile(device, "../../texture5.bmp");
@@ -197,7 +197,7 @@ namespace StepDX
             pt.Color = Color.Transparent;
             world.Add(pt);
 
-            Texture spritetexture = TextureLoader.FromFile(device, "../../alien.png");
+            Texture spritetexture = TextureLoader.FromFile(device, "../../falco.png");
             player.Tex = spritetexture;
             player.AddVertex(new Vector2(-0.2f, 0));
             player.AddTex(new Vector2(0, 1));

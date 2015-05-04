@@ -16,7 +16,7 @@ namespace StepDX
         public ProjectileGenerator(Device d)
         {
             device = d;
-            texture = TextureLoader.FromFile(device, "../../plasma.png");
+            texture = TextureLoader.FromFile(device, "../../green_laser.png");
         }
 
         public List<Polygon> Advance(float dt, List<Polygon> world)
