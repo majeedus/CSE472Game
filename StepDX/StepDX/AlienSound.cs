@@ -23,9 +23,9 @@ namespace StepDX
             SoundDevice = new Device();
             SoundDevice.SetCooperativeLevel(form, CooperativeLevel.Priority);
 
-            Load(ref jump, "../../wav/affirmation1.wav");
+            Load(ref jump, "../../wav/jump.wav");
             Load(ref die, "../../wav/death.wav");
-            Load(ref defeat, "../../wav/defeat.wav");
+            Load(ref defeat, "../../wav/gameover.wav");
             Load(ref victory, "../../wav/victory.wav");
             Load(ref attack, "../../wav/attack.wav");
         }
