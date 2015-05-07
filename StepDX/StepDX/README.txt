@@ -4,8 +4,11 @@ Open solution file in main folder and run program to play.
 
 Spacebar to jump and left and right arrows to move.
 
-Obstacles - 
+Obstacles - Chelsea Bridson
 Scoring - 
 Projectiles - Usman Majeed
 Alien Sprite - 
 Sound Effects - 
+
+
+New: Collisons, Keybinding, Sound
