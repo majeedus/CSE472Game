@@ -1,6 +1,6 @@
 README - CSE 472 Final Project
 
-Open solution file in main folder and run program to play. 
+Run to play
 
 Spacebar to jump and left and right arrows to move.
 
@@ -11,4 +11,4 @@ Projectiles - Usman Majeed
 Sound Effects - Chelsea Bridson
 
 
-New: Collisons, Keybinding, Sound Effects
+New: Collisons, Keybinding, Projectile/Sound Effects, Scoring
